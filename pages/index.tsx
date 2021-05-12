@@ -1,4 +1,5 @@
 import Head from 'next/head'
+
 import styles from '~/styles/Home.module.css'
 
 const Home = () => {
@@ -23,8 +24,7 @@ const Home = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          Powered by <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>

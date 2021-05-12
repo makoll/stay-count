@@ -1,15 +1,13 @@
 import path from 'path'
+
 import Fastify, { FastifyServerFactory } from 'fastify'
-import helmet from 'fastify-helmet'
 import cors from 'fastify-cors'
-import fastifyStatic from 'fastify-static'
+import helmet from 'fastify-helmet'
 import fastifyJwt from 'fastify-jwt'
-import {
-  API_JWT_SECRET,
-  API_BASE_PATH,
-  API_UPLOAD_DIR
-} from '$/service/envValues'
+import fastifyStatic from 'fastify-static'
+
 import server from '$/$server'
+import { API_JWT_SECRET, API_BASE_PATH, API_UPLOAD_DIR } from '$/service/envValues'
 
 export const init = (serverFactory?: FastifyServerFactory) => {
   const app = Fastify({ serverFactory })

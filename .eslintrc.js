@@ -5,6 +5,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
     'prettier'
   ],
   plugins: ['@typescript-eslint', 'react'],
@@ -26,6 +28,16 @@ module.exports = {
     }
   },
   rules: {
+    'no-console': 'warn',
+    'no-restricted-imports': ['error', { patterns: ['../'] }],
+    'import/order': [
+      'warn',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+        alphabetize: { order: 'asc' },
+        'newlines-between': 'always'
+      }
+    ],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off'
   },

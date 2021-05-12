@@ -1,17 +1,18 @@
 {
-  "version": "0.1",
-  "words": [
-    "aspida",
-    "autoincrement",
-    "datasource",
-    "esnext",
-    "Fastify",
-    "frourio",
-    "monit",
-    "prebuild",
-    "pretypecheck",
-    "stayed",
-    "typecheck",
-    "velona"
-  ]
+    "version": "0.1",
+    "words": [
+        "aspida",
+        "autoincrement",
+        "datasource",
+        "downlevel",
+        "esnext",
+        "Fastify",
+        "frourio",
+        "monit",
+        "prebuild",
+        "pretypecheck",
+        "stayed",
+        "typecheck",
+        "velona"
+    ]
 }
