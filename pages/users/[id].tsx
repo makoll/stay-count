@@ -13,22 +13,11 @@ const UserContainer = () => {
   const router = useRouter()
   const queryUserId = Number(router.query.id as string)
 
-  // const { data: stays, error } = useAspidaSWR(apiClient.stays, {
-  //   query: { id: queryUserId }
-  // })
-
+  const { data: stays, error } = useAspidaSWR(apiClient.users._userId(queryUserId).stays)
   const { data: user, error: error2 } = useAspidaSWR(apiClient.users._userId(queryUserId))
 
-  // if (error || error2) return <div>failed to load</div>
-  // if (!stays || !user) return <div>loading...</div>
-
-  if (error2) return <div>failed to load</div>
-  if (!user) return <div>loading...</div>
-
-  const stays = [
-    { name: 'US', count: 3 },
-    { name: 'JP', count: 1 }
-  ]
+  if (error || error2) return <div>failed to load</div>
+  if (!stays || !user) return <div>loading...</div>
 
   return <UserPresentation user={user} stays={stays ?? []} />
 }
