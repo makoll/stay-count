@@ -1,4 +1,4 @@
-import type { User } from '$/types'
+import { User } from '$/entities'
 
 export type Methods = {
   get: {

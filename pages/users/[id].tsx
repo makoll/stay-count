@@ -3,7 +3,8 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { Stay, User } from '~/server/types'
+import { User } from '$/entities'
+import { Stay } from '~/server/types'
 import styles from '~/styles/User.module.css'
 import { apiClient } from '~/utils/apiClient'
 
@@ -14,11 +15,12 @@ const UserContainer = () => {
   const queryUserId = Number(router.query.id as string)
 
   const { data: stays, error } = useAspidaSWR(apiClient.users._userId(queryUserId).stays, { enabled: !!queryUserId })
-  const { data: user, error: error2 } = useAspidaSWR(apiClient.users._userId(queryUserId), { enabled: !!queryUserId })
+  const { data: tUser, error: error2 } = useAspidaSWR(apiClient.users._userId(queryUserId), { enabled: !!queryUserId })
 
   if (error || error2) return <div>failed to load</div>
-  if (!stays || !user) return <div>loading...</div>
+  if (!stays || !tUser) return <div>loading...</div>
 
+  const user = new User(tUser)
   return <UserPresentation user={user} stays={stays ?? []} />
 }
 
