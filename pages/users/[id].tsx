@@ -13,8 +13,8 @@ const UserContainer = () => {
   const router = useRouter()
   const queryUserId = Number(router.query.id as string)
 
-  const { data: stays, error } = useAspidaSWR(apiClient.users._userId(queryUserId).stays)
-  const { data: user, error: error2 } = useAspidaSWR(apiClient.users._userId(queryUserId))
+  const { data: stays, error } = useAspidaSWR(apiClient.users._userId(queryUserId).stays, { enabled: !!queryUserId })
+  const { data: user, error: error2 } = useAspidaSWR(apiClient.users._userId(queryUserId), { enabled: !!queryUserId })
 
   if (error || error2) return <div>failed to load</div>
   if (!stays || !user) return <div>loading...</div>
