@@ -27,4 +27,6 @@ model Stay {
   user      User?    @relation(fields: [userId], references: [id])
   countryId Int?
   country   Country? @relation(fields: [countryId], references: [id])
+
+  @@unique([userId, countryId])
 }

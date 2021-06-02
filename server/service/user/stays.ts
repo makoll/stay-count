@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
+import type { StayUpsert } from '$/types'
 import type { User } from '$prisma/client'
 
 const prisma = new PrismaClient()
@@ -11,3 +12,12 @@ export const getStays = (id: User['id']) =>
       country: true
     }
   })
+
+export const updateStay = (stay: StayUpsert) => {
+  const result = prisma.stay.upsert({
+    where: { userId_countryId: { userId: stay.userId, countryId: stay.countryId } },
+    update: stay,
+    create: stay
+  })
+  return result
+}
