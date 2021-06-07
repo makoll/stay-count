@@ -3,7 +3,7 @@ export type User = {
   name: string
 }
 
-export type Stay = {
+export type StayGet = {
   name: string
   count: number
 }

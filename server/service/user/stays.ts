@@ -13,11 +13,9 @@ export const getStays = (id: User['id']) =>
     }
   })
 
-export const updateStay = (stay: StayUpsert) => {
-  const result = prisma.stay.upsert({
+export const upsertStay = (stay: StayUpsert) =>
+  prisma.stay.upsert({
     where: { userId_countryId: { userId: stay.userId, countryId: stay.countryId } },
     update: stay,
     create: stay
   })
-  return result
-}

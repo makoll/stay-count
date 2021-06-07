@@ -1,7 +1,9 @@
+// import useAspidaSWR from '@aspida/swr'
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 
 import styles from '~/styles/Register.module.css'
+// import { apiClient } from '~/utils/apiClient'
 
 const RegisterContainer = () => {
   return <RegisterPresentation />
