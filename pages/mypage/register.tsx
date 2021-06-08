@@ -1,9 +1,9 @@
-// import useAspidaSWR from '@aspida/swr'
 import Head from 'next/head'
-import { useForm } from 'react-hook-form'
+import { useCallback } from 'react'
+import { useForm, UseFormRegisterReturn } from 'react-hook-form'
 
 import styles from '~/styles/Register.module.css'
-// import { apiClient } from '~/utils/apiClient'
+import { apiClient } from '~/utils/apiClient'
 
 const RegisterContainer = () => {
   return <RegisterPresentation />
@@ -11,7 +11,11 @@ const RegisterContainer = () => {
 
 const RegisterPresentation = () => {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data: { [key: string]: number }) => alert(JSON.stringify(data))
+  const registerStay = useCallback(async (formValue) => {
+    const count = Number(formValue.count ?? 0)
+    const countryId = Number(formValue.countryId ?? 0)
+    await apiClient.users._userId(1).stays.put({ body: { count, countryId } })
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -23,9 +27,9 @@ const RegisterPresentation = () => {
         <h1 className={styles.title}>Register stay</h1>
 
         <div className={styles.contents}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(registerStay)}>
             <input type="number" {...register('count')} placeholder="count" />
-            <Countries />
+            <Countries formRegister={register('countryId')} />
             <input type="submit" />
           </form>
         </div>
@@ -34,9 +38,9 @@ const RegisterPresentation = () => {
   )
 }
 
-const Countries = () => {
+const Countries = ({ formRegister }: { formRegister: UseFormRegisterReturn }) => {
   return (
-    <select>
+    <select {...formRegister}>
       <option value={1}>US</option>
       <option value={2}>JP</option>
     </select>
