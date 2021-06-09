@@ -11,8 +11,6 @@ export default defineController(() => ({
     return { status: 200, body }
   },
   put: async ({ body, params }) => {
-    console.log(14, body)
-
     const userId = Number(params.userId)
     const upsert = { ...body, userId }
     await upsertStay(upsert)

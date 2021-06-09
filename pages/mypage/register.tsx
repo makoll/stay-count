@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useCallback } from 'react'
 import { useForm, UseFormRegisterReturn } from 'react-hook-form'
 
+import { countries } from '~/constants/country'
 import styles from '~/styles/Register.module.css'
 import { apiClient } from '~/utils/apiClient'
 
@@ -41,8 +42,11 @@ const RegisterPresentation = () => {
 const Countries = ({ formRegister }: { formRegister: UseFormRegisterReturn }) => {
   return (
     <select {...formRegister}>
-      <option value={1}>US</option>
-      <option value={2}>JP</option>
+      {countries.map((country) => (
+        <option key={country.id} value={country.id}>
+          {country.name}
+        </option>
+      ))}
     </select>
   )
 }
