@@ -6,13 +6,18 @@ import { countries } from '~/constants/country'
 import styles from '~/styles/Register.module.css'
 import { apiClient } from '~/utils/apiClient'
 
-const RegisterContainer = () => {
-  return <RegisterPresentation />
+const RegisterStayContainer = () => {
+  return <RegisterStayPresentation />
 }
 
-const RegisterPresentation = () => {
+type TFormValue = {
+  count: string
+  countryId: string
+}
+
+const RegisterStayPresentation = () => {
   const { register, handleSubmit } = useForm()
-  const registerStay = useCallback(async (formValue) => {
+  const registerStay = useCallback(async (formValue: TFormValue) => {
     const count = Number(formValue.count ?? 0)
     const countryId = Number(formValue.countryId ?? 0)
     await apiClient.users._userId(1).stays.put({ body: { count, countryId } })
@@ -51,4 +56,4 @@ const Countries = ({ formRegister }: { formRegister: UseFormRegisterReturn }) =>
   )
 }
 
-export default RegisterContainer
+export default RegisterStayContainer
